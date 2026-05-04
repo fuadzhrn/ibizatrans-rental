@@ -1,0 +1,440 @@
+/* Paket Tour page styles - desktop first */
+.paket-tour-page .section {
+    padding: 100px 0;
+}
+
+.paket-hero {
+    position: relative;
+    min-height: 68vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.paket-hero__bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('/assets/images/paket-tour/paket-tour-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.02);
+}
+
+/* Hero asset can be replaced later without changing markup. */
+
+.paket-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(11, 11, 11, 0.84) 0%, rgba(11, 11, 11, 0.5) 55%, rgba(11, 11, 11, 0.68) 100%);
+}
+
+.paket-hero__content {
+    position: relative;
+    z-index: 2;
+}
+
+.paket-hero__text {
+    max-width: 760px;
+    padding-top: 72px;
+}
+
+.paket-eyebrow {
+    display: inline-block;
+    margin-bottom: 14px;
+    color: var(--soft-gold);
+    letter-spacing: 0.9px;
+    font-weight: 600;
+}
+
+.paket-hero h1 {
+    font-size: 52px;
+    margin-bottom: 16px;
+}
+
+.paket-hero p {
+    max-width: 700px;
+    color: var(--warm-white);
+}
+
+.paket-hero__actions {
+    margin-top: 24px;
+    display: flex;
+    gap: 12px;
+}
+
+.tour-overview {
+    background: var(--warm-white);
+}
+
+.tour-overview .section-title,
+.tour-overview h3 {
+    color: var(--primary-black);
+}
+
+.tour-overview .section-sub,
+.tour-overview p {
+    color: #4b4b4b;
+}
+
+.tour-overview__grid {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.overview-card {
+    background: var(--white);
+    border-radius: 14px;
+    border: 1px solid var(--gold-border);
+    padding: 22px;
+    box-shadow: 0 10px 28px rgba(11, 11, 11, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.overview-card:hover,
+.tour-card:hover,
+.tour-detail-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 34px rgba(11, 11, 11, 0.14);
+}
+
+.overview-card__icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(217, 154, 0, 0.1);
+    color: var(--luxury-gold);
+    font-size: 24px;
+    margin-bottom: 12px;
+}
+
+.featured-tour {
+    background: var(--charcoal);
+}
+
+.featured-tour__grid {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.tour-card {
+    overflow: hidden;
+    border: 1px solid var(--gold-border);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.03);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.tour-card__image {
+    min-height: 170px;
+    position: relative;
+    background: linear-gradient(135deg, rgba(217, 154, 0, 0.15), rgba(11, 11, 11, 0.2));
+}
+
+.tour-card__image[data-image="escapada"] { background: linear-gradient(135deg, rgba(217,154,0,0.16), rgba(11,11,11,0.18)); }
+.tour-card__image[data-image="esencia"] { background: linear-gradient(135deg, rgba(20,70,110,0.32), rgba(11,11,11,0.18)); }
+.tour-card__image[data-image="aventura"] { background: linear-gradient(135deg, rgba(70,120,70,0.28), rgba(11,11,11,0.18)); }
+.tour-card__image[data-image="travesia"] { background: linear-gradient(135deg, rgba(35,45,65,0.34), rgba(11,11,11,0.18)); }
+.tour-card__image[data-image="baluran"] { background: linear-gradient(135deg, rgba(166,120,45,0.26), rgba(11,11,11,0.18)); }
+.tour-card__image[data-image="banyuwangi-selatan"] { background: linear-gradient(135deg, rgba(45,95,120,0.3), rgba(11,11,11,0.18)); }
+
+.tour-card__image span {
+    position: absolute;
+    left: 16px;
+    bottom: 16px;
+    background: rgba(11, 11, 11, 0.5);
+    color: var(--warm-white);
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-weight: 600;
+}
+
+.tour-card__body {
+    padding: 20px;
+}
+
+.tour-badge,
+.tour-detail-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--soft-gold);
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.tour-card h3,
+.tour-card p,
+.tour-price {
+    color: var(--warm-white);
+}
+
+.tour-card p {
+    color: var(--muted-text);
+    min-height: 44px;
+}
+
+.tour-price {
+    margin: 12px 0 16px;
+    color: var(--soft-gold);
+}
+
+.tour-price strong {
+    color: var(--soft-gold);
+}
+
+.tour-details {
+    background: var(--primary-black);
+}
+
+.tour-details__stack {
+    display: grid;
+    gap: 22px;
+}
+
+.tour-detail-card {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 20px;
+    border: 1px solid var(--gold-border);
+    border-radius: 16px;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.02);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.tour-detail-card--alt {
+    background: var(--warm-white);
+}
+
+.tour-detail-card--alt .tour-detail-card__copy,
+.tour-detail-card--alt h2,
+.tour-detail-card--alt h4,
+.tour-detail-card--alt p,
+.tour-detail-card--alt li,
+.tour-detail-card--alt span,
+.tour-detail-card--alt strong {
+    color: var(--primary-black);
+}
+
+.tour-detail-card--alt .tour-detail-art {
+    background: linear-gradient(135deg, rgba(11, 11, 11, 0.08), rgba(217, 154, 0, 0.1));
+}
+
+.tour-detail-card__copy h2 {
+    margin-bottom: 10px;
+}
+
+.tour-detail-meta {
+    margin: 14px 0 18px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(217, 154, 0, 0.22);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.tour-detail-meta span {
+    display: block;
+    color: var(--muted-text);
+    margin-bottom: 6px;
+}
+
+.tour-detail-meta strong {
+    display: inline-block;
+    margin-right: 16px;
+    color: var(--soft-gold);
+}
+
+.tour-detail-blocks {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 18px;
+    margin-bottom: 18px;
+}
+
+.tour-detail-blocks h4 {
+    margin-bottom: 10px;
+}
+
+.tour-detail-blocks ul,
+.tour-timeline {
+    list-style: none;
+}
+
+.tour-detail-blocks li {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+    color: var(--muted-text);
+}
+
+.tour-detail-blocks i {
+    color: var(--luxury-gold);
+    margin-top: 3px;
+}
+
+.tour-timeline {
+    display: grid;
+    gap: 10px;
+}
+
+.tour-timeline li {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed rgba(217, 154, 0, 0.2);
+}
+
+.tour-timeline span {
+    color: var(--soft-gold);
+    font-weight: 600;
+}
+
+.tour-detail-art {
+    height: 100%;
+    min-height: 340px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(217, 154, 0, 0.16), rgba(11, 11, 11, 0.16));
+    border: 1px solid rgba(217, 154, 0, 0.22);
+}
+
+.custom-trip {
+    background: linear-gradient(180deg, var(--charcoal), var(--primary-black));
+}
+
+.custom-trip__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    align-items: center;
+}
+
+.custom-trip__copy p {
+    margin: 16px 0 22px;
+    max-width: 720px;
+}
+
+.custom-trip__pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.custom-trip__pills span {
+    border: 1px solid var(--gold-border);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--warm-white);
+    padding: 10px 14px;
+    border-radius: 999px;
+    font-size: 14px;
+}
+
+.trip-notes {
+    background: var(--warm-white);
+}
+
+.trip-notes .section-title,
+.trip-notes p {
+    color: var(--primary-black);
+}
+
+.trip-notes__card {
+    border: 1px solid var(--gold-border);
+    border-radius: 14px;
+    background: var(--white);
+    padding: 22px 24px;
+    display: grid;
+    gap: 10px;
+    box-shadow: 0 10px 26px rgba(11, 11, 11, 0.08);
+}
+
+.trip-notes__card p {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.trip-notes__card i {
+    color: var(--luxury-gold);
+    margin-top: 3px;
+}
+
+.tour-faq {
+    background: var(--primary-black);
+}
+
+.faq-list {
+    display: grid;
+    gap: 14px;
+    margin-top: 22px;
+}
+
+.faq-item {
+    border-radius: 14px;
+    border: 1px solid var(--gold-border);
+    background: rgba(255, 255, 255, 0.02);
+    overflow: hidden;
+}
+
+.faq-question {
+    width: 100%;
+    background: transparent;
+    color: var(--warm-white);
+    border: 0;
+    padding: 18px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font: inherit;
+    cursor: pointer;
+    text-align: left;
+}
+
+.faq-question i {
+    color: var(--luxury-gold);
+    font-size: 20px;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.faq-answer p {
+    padding: 0 20px 18px;
+    color: var(--muted-text);
+}
+
+.faq-item.is-open .faq-answer {
+    max-height: 160px;
+}
+
+.paket-cta {
+    background: linear-gradient(180deg, var(--charcoal), var(--primary-black));
+}
+
+.paket-cta__card {
+    border: 1px solid var(--gold-border);
+    border-radius: 16px;
+    padding: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.paket-cta__content h2 {
+    margin-bottom: 10px;
+}
