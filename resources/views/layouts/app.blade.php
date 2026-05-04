@@ -7,8 +7,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css">
     <link rel="stylesheet" href="{{ asset('assets/css/global.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
+    @stack('styles')
 </head>
 <body class="ibiza-body">
     @include('partials.navbar')
@@ -18,6 +19,6 @@
     @include('partials.footer')
 
     <script src="{{ asset('assets/js/global.js') }}"></script>
-    <script src="{{ asset('assets/js/home.js') }}"></script>
+    @stack('scripts')
 </body>
 </html>

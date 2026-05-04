@@ -39,6 +39,7 @@ p{color:var(--muted-text);line-height:1.6}
 .nav-links{list-style:none;display:flex;gap:22px;align-items:center}
 .nav-links li a{color:var(--white);text-decoration:none;padding:6px 8px}
 .nav-links li a:hover{color:var(--luxury-gold)}
+.nav-links li a.active{color:var(--luxury-gold)}
 
 /* Footer */
 .ibiza-footer{background:var(--primary-black);color:var(--muted-text);padding:48px 0;border-top:1px solid rgba(255,255,255,0.03)}

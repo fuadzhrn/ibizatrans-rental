@@ -1,0 +1,413 @@
+/* Layanan page styles - desktop-first. Hero image can be replaced at: public/assets/images/layanan/layanan-hero.jpg */
+.layanan-page .section {
+    padding: 96px 0;
+}
+
+.layanan-hero {
+    position: relative;
+    min-height: 65vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.layanan-hero__bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('/assets/images/layanan/layanan-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.02);
+}
+
+.layanan-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(11, 11, 11, 0.82) 0%, rgba(11, 11, 11, 0.5) 52%, rgba(11, 11, 11, 0.65) 100%);
+}
+
+.layanan-hero__content {
+    position: relative;
+    z-index: 2;
+}
+
+.layanan-hero__text {
+    max-width: 760px;
+    padding-top: 70px;
+}
+
+.layanan-eyebrow {
+    display: inline-block;
+    margin-bottom: 14px;
+    color: var(--soft-gold);
+    letter-spacing: 0.8px;
+    font-weight: 600;
+}
+
+.layanan-hero h1 {
+    font-size: 52px;
+    margin-bottom: 16px;
+}
+
+.layanan-hero p {
+    max-width: 680px;
+    color: var(--warm-white);
+}
+
+.layanan-hero__actions {
+    margin-top: 24px;
+    display: flex;
+    gap: 12px;
+}
+
+.layanan-overview {
+    background: var(--warm-white);
+}
+
+.layanan-overview .section-title,
+.layanan-overview h3 {
+    color: var(--primary-black);
+}
+
+.layanan-overview .section-sub,
+.layanan-overview p {
+    color: #494949;
+}
+
+.layanan-overview__grid {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.layanan-card {
+    display: block;
+    text-decoration: none;
+    background: var(--white);
+    border: 1px solid var(--gold-border);
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: 0 10px 28px rgba(11, 11, 11, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.is-prep {
+    opacity: 0;
+    transform: translateY(12px);
+}
+
+.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.layanan-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 34px rgba(11, 11, 11, 0.14);
+}
+
+.layanan-card__icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(217, 154, 0, 0.1);
+    color: var(--luxury-gold);
+    font-size: 24px;
+    margin-bottom: 12px;
+}
+
+.rental-mobil {
+    background: var(--charcoal);
+}
+
+.rental-mobil__wrap {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 26px;
+}
+
+.rental-mobil__type {
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid var(--gold-border);
+    background: rgba(255, 255, 255, 0.02);
+    margin-bottom: 12px;
+}
+
+.rental-mobil__type h3 {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    color: var(--warm-white);
+    margin-bottom: 8px;
+}
+
+.rental-mobil__type h3 i,
+.rental-mobil__benefits i,
+.pricing-footnote i,
+.driver-service__benefits i {
+    color: var(--luxury-gold);
+}
+
+.rental-mobil__benefits {
+    list-style: none;
+    display: grid;
+    gap: 8px;
+    margin: 16px 0;
+}
+
+.rental-mobil__note {
+    color: var(--muted-text);
+    font-size: 14px;
+}
+
+.rental-mobil__units {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.unit-card {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid var(--gold-border);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.unit-card i {
+    color: var(--luxury-gold);
+    font-size: 18px;
+}
+
+.layanan-pricelist {
+    background: var(--warm-white);
+}
+
+.layanan-pricelist .section-title,
+.layanan-pricelist h3,
+.layanan-pricelist th,
+.layanan-pricelist td {
+    color: var(--primary-black);
+}
+
+.layanan-pricelist .section-sub,
+.layanan-pricelist p {
+    color: #4f4f4f;
+}
+
+.pricelist-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-top: 24px;
+}
+
+.pricing-card {
+    border: 1px solid var(--gold-border);
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--white);
+    box-shadow: 0 10px 26px rgba(11, 11, 11, 0.1);
+}
+
+.pricing-card__head {
+    background: var(--charcoal);
+    color: var(--warm-white);
+    padding: 14px 16px;
+}
+
+.pricing-badge {
+    color: var(--soft-gold);
+    font-weight: 600;
+}
+
+.pricing-note-top {
+    margin-top: 8px;
+    color: var(--muted-text);
+    font-size: 13px;
+}
+
+.pricing-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.pricing-table th,
+.pricing-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(217, 154, 0, 0.18);
+    font-size: 14px;
+}
+
+.pricing-table tbody td:nth-child(2),
+.pricing-table tbody td:nth-child(3),
+.pricing-table--driver tbody td:nth-child(2) {
+    color: var(--luxury-gold);
+    font-weight: 600;
+}
+
+.pricing-footnote {
+    margin-top: 20px;
+    display: grid;
+    gap: 8px;
+}
+
+.pricelist-action {
+    margin-top: 18px;
+}
+
+.rental-motor {
+    background: var(--primary-black);
+}
+
+.rental-motor__grid {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+}
+
+.motor-card {
+    border: 1px solid var(--gold-border);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.02);
+    padding: 16px;
+    text-align: center;
+}
+
+.motor-card i {
+    display: block;
+    color: var(--luxury-gold);
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+.rental-motor__action {
+    margin-top: 20px;
+}
+
+.driver-service {
+    background: var(--warm-white);
+}
+
+.driver-service .section-title,
+.driver-service h3,
+.driver-service h4,
+.driver-service span {
+    color: var(--primary-black);
+}
+
+.driver-service .section-sub,
+.driver-service p,
+.driver-service li {
+    color: #464646;
+}
+
+.driver-service__grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 22px;
+}
+
+.driver-service__benefits {
+    list-style: none;
+    display: grid;
+    gap: 10px;
+}
+
+.driver-service__copy {
+    margin-top: 16px;
+    font-weight: 500;
+}
+
+.driver-service__card {
+    border-radius: 14px;
+    border: 1px solid var(--gold-border);
+    background: var(--white);
+    padding: 20px;
+    box-shadow: 0 10px 28px rgba(11, 11, 11, 0.1);
+}
+
+.driver-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px dashed rgba(217, 154, 0, 0.28);
+}
+
+.driver-item:last-child {
+    border-bottom: 0;
+}
+
+.driver-item i {
+    color: var(--luxury-gold);
+}
+
+.airport-transfer {
+    background: var(--charcoal);
+}
+
+.airport-transfer__grid {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+}
+
+.transfer-card {
+    border: 1px solid var(--gold-border);
+    border-radius: 12px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.02);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.transfer-card:hover,
+.unit-card:hover,
+.motor-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+}
+
+.transfer-card i {
+    color: var(--luxury-gold);
+    font-size: 21px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.airport-transfer__action {
+    margin-top: 20px;
+}
+
+.layanan-cta {
+    background: linear-gradient(180deg, var(--charcoal), var(--primary-black));
+}
+
+.layanan-cta__card {
+    border: 1px solid var(--gold-border);
+    border-radius: 14px;
+    padding: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.layanan-cta__content h2 {
+    margin-bottom: 10px;
+}
+
+.layanan-cta__content p {
+    max-width: 780px;
+}
