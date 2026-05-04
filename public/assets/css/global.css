@@ -1,0 +1,72 @@
+:root{
+    --primary-black: #0B0B0B;
+    --charcoal: #151515;
+    --luxury-gold: #D99A00;
+    --soft-gold: #F4C430;
+    --warm-white: #F8F6F0;
+    --white: #FFFFFF;
+    --muted-text: #AFAFAF;
+    --gold-border: rgba(217,154,0,0.35);
+    --container-width: 1200px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:'Poppins',sans-serif;background:var(--primary-black);color:var(--white);-webkit-font-smoothing:antialiased}
+
+.container{max-width:var(--container-width);margin:0 auto;padding:0 24px}
+
+/* Typography */
+h1,h2,h3,h4{font-family:'Montserrat',sans-serif;color:var(--white);line-height:1.1}
+h1{font-size:48px}
+h2{font-size:34px;margin-bottom:18px}
+p{color:var(--muted-text);line-height:1.6}
+.lead{color:var(--warm-white);font-size:18px;margin:18px 0 24px}
+
+/* Buttons */
+.btn{display:inline-block;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:600}
+.btn-primary{background:var(--luxury-gold);color:var(--primary-black)}
+.btn-secondary{background:transparent;border:1px solid rgba(255,255,255,0.08);color:var(--white)}
+.btn-outline{background:transparent;border:1px solid var(--gold-border);color:var(--white)}
+.btn-book{background:var(--luxury-gold);color:var(--primary-black);padding:10px 16px;border-radius:8px}
+.btn-book-outline{background:transparent;border:1px solid var(--luxury-gold);color:var(--warm-white);padding:8px 14px;border-radius:8px}
+
+/* Navbar */
+.ibiza-navbar{position:fixed;top:0;left:0;right:0;z-index:40;padding:18px 0;background:rgba(11,11,11,0.22);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,0.02)}
+.nav-container{display:flex;align-items:center;justify-content:space-between}
+.brand .logo{font-weight:700;color:var(--white);text-decoration:none;font-size:20px}
+.logo-gold{color:var(--luxury-gold)}
+.nav-links{list-style:none;display:flex;gap:22px;align-items:center}
+.nav-links li a{color:var(--white);text-decoration:none;padding:6px 8px}
+.nav-links li a:hover{color:var(--luxury-gold)}
+
+/* Footer */
+.ibiza-footer{background:var(--primary-black);color:var(--muted-text);padding:48px 0;border-top:1px solid rgba(255,255,255,0.03)}
+.footer-container{display:grid;grid-template-columns:1fr 200px 260px 240px;gap:24px;align-items:start}
+.footer-brand .logo{font-size:20px;color:var(--white);font-weight:700}
+.footer-links ul{list-style:none;margin-top:10px}
+.footer-links ul li{margin:8px 0}
+.footer-links a,
+.footer-contact a,
+.footer-brand a{color:var(--warm-white);text-decoration:none;transition:color .2s ease}
+.footer-links a:hover,
+.footer-contact a:hover,
+.footer-brand a:hover{color:var(--luxury-gold)}
+.footer-contact p{margin:8px 0}
+.footer-contact p,
+.footer-contact h4,
+.footer-links h4,
+.footer-cta h4{color:var(--warm-white)}
+.footer-cta .btn{margin-top:8px}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.03);padding:18px 0;margin-top:20px}
+
+/* Sections spacing */
+.section{padding:80px 0}
+.section .section-title{color:var(--white);margin-bottom:12px}
+.section .section-sub{color:var(--muted-text);margin-bottom:22px}
+
+/* Utility */
+.grid{display:grid}
+.muted{color:var(--muted-text)}
+
+/* Responsive note: desktop-first design */
