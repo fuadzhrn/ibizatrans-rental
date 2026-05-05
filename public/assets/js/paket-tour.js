@@ -4,6 +4,22 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
 
+    var navbar = document.getElementById('ibiza-navbar');
+    var getOffset = function () {
+        return navbar ? Math.max(navbar.offsetHeight + 14, 92) : 92;
+    };
+
+    var scrollToTarget = function (target) {
+        if (!target) {
+            return;
+        }
+
+        window.scrollTo({
+            top: target.getBoundingClientRect().top + window.scrollY - getOffset(),
+            behavior: 'smooth'
+        });
+    };
+
     document.querySelectorAll('.paket-tour-page a[href^="#"]').forEach(function (link) {
         link.addEventListener('click', function (event) {
             var targetId = this.getAttribute('href');
@@ -17,10 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             event.preventDefault();
-            window.scrollTo({
-                top: target.getBoundingClientRect().top + window.scrollY - 98,
-                behavior: 'smooth'
-            });
+            scrollToTarget(target);
         });
     });
 
@@ -34,8 +47,24 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         button.addEventListener('click', function () {
-            var isOpen = item.classList.toggle('is-open');
-            icon.className = isOpen ? 'ri-subtract-line' : 'ri-add-line';
+            var willOpen = !item.classList.contains('is-open');
+
+            faqItems.forEach(function (otherItem) {
+                var otherButton = otherItem.querySelector('.faq-question');
+                var otherIcon = otherItem.querySelector('.faq-question i');
+
+                if (!otherButton || !otherIcon) {
+                    return;
+                }
+
+                otherItem.classList.remove('is-open');
+                otherIcon.className = 'ri-add-line';
+            });
+
+            if (willOpen) {
+                item.classList.add('is-open');
+                icon.className = 'ri-subtract-line';
+            }
         });
     });
 });

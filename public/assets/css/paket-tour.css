@@ -438,3 +438,385 @@
 .paket-cta__content h2 {
     margin-bottom: 10px;
 }
+
+.paket-cta__content p {
+    max-width: 780px;
+}
+
+.paket-tour-page .section[id],
+#featured-tour-cards,
+#escapada-trip,
+#esencia-trip,
+#aventura-trip,
+#travesia-trip,
+#explore-baluran,
+#explore-banyuwangi-selatan {
+    scroll-margin-top: 108px;
+}
+
+@media (max-width: 768px) {
+    .paket-tour-page .section {
+        padding: 72px 0;
+    }
+
+    .paket-tour-page .container {
+        padding: 0 20px;
+    }
+
+    .paket-hero {
+        min-height: 78vh;
+        align-items: flex-start;
+        padding-top: 96px;
+    }
+
+    .paket-hero__overlay {
+        background: linear-gradient(180deg, rgba(11, 11, 11, 0.9) 0%, rgba(11, 11, 11, 0.72) 55%, rgba(11, 11, 11, 0.82) 100%);
+    }
+
+    .paket-hero__text {
+        max-width: none;
+        padding-top: 18px;
+        padding-bottom: 28px;
+    }
+
+    .paket-eyebrow {
+        margin-bottom: 12px;
+        font-size: 13px;
+    }
+
+    .paket-hero h1 {
+        font-size: 38px;
+        line-height: 1.08;
+        margin-bottom: 14px;
+    }
+
+    .paket-hero p {
+        max-width: 100%;
+        font-size: 16px;
+        line-height: 1.75;
+    }
+
+    .paket-hero__actions {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-top: 22px;
+    }
+
+    .paket-hero__actions .btn {
+        width: 100%;
+        min-height: 50px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .tour-overview {
+        padding-top: 68px;
+        padding-bottom: 68px;
+    }
+
+    .tour-overview__grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin-top: 22px;
+    }
+
+    .overview-card {
+        padding: 20px;
+    }
+
+    .overview-card h3 {
+        font-size: 20px;
+        line-height: 1.25;
+    }
+
+    .overview-card p {
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .featured-tour__grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin-top: 22px;
+    }
+
+    .tour-card__image {
+        min-height: 200px;
+    }
+
+    .tour-card__image span {
+        left: 12px;
+        bottom: 12px;
+        font-size: 13px;
+        padding: 7px 10px;
+    }
+
+    .tour-card__body {
+        padding: 18px;
+    }
+
+    .tour-card h3 {
+        font-size: 20px;
+        line-height: 1.25;
+    }
+
+    .tour-card p {
+        min-height: auto;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .tour-price {
+        font-size: 14px;
+    }
+
+    .tour-card .btn {
+        width: 100%;
+        min-height: 48px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .tour-details {
+        padding-top: 68px;
+        padding-bottom: 68px;
+    }
+
+    .tour-details__stack {
+        gap: 18px;
+    }
+
+    .tour-detail-card {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding: 20px;
+    }
+
+    .tour-detail-card__copy {
+        order: 1;
+    }
+
+    .tour-detail-card__aside {
+        order: 2;
+    }
+
+    .tour-detail-card__copy h2 {
+        font-size: 28px;
+        line-height: 1.15;
+    }
+
+    .tour-detail-card__copy p {
+        font-size: 15px;
+        line-height: 1.75;
+    }
+
+    .tour-detail-meta {
+        padding: 14px;
+        margin: 12px 0 16px;
+    }
+
+    .tour-detail-meta strong {
+        display: block;
+        margin-right: 0;
+        margin-top: 6px;
+        font-size: 15px;
+    }
+
+    .tour-detail-blocks {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin-bottom: 16px;
+    }
+
+    .tour-detail-blocks h4 {
+        font-size: 18px;
+    }
+
+    .tour-detail-blocks li {
+        font-size: 14px;
+        line-height: 1.65;
+    }
+
+    .tour-timeline li {
+        grid-template-columns: 1fr;
+        gap: 6px;
+        padding-bottom: 12px;
+    }
+
+    .tour-timeline span {
+        font-size: 12px;
+        letter-spacing: 0.2px;
+    }
+
+    .tour-timeline p {
+        font-size: 14px;
+        line-height: 1.65;
+    }
+
+    .tour-detail-art {
+        min-height: 220px;
+    }
+
+    .custom-trip {
+        padding-top: 68px;
+        padding-bottom: 68px;
+    }
+
+    .custom-trip__grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .custom-trip__copy h2 {
+        font-size: 30px;
+        line-height: 1.12;
+    }
+
+    .custom-trip__copy p {
+        font-size: 15px;
+        line-height: 1.75;
+        margin: 14px 0 20px;
+    }
+
+    .custom-trip__pills {
+        justify-content: flex-start;
+        gap: 10px;
+    }
+
+    .custom-trip__pills span {
+        font-size: 13px;
+        padding: 10px 12px;
+    }
+
+    .custom-trip__copy .btn {
+        width: 100%;
+        min-height: 50px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .trip-notes {
+        padding-top: 68px;
+        padding-bottom: 68px;
+    }
+
+    .trip-notes__card {
+        padding: 20px;
+        gap: 12px;
+    }
+
+    .trip-notes__card p {
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .tour-faq {
+        padding-top: 68px;
+        padding-bottom: 68px;
+    }
+
+    .faq-list {
+        gap: 12px;
+    }
+
+    .faq-question {
+        padding: 16px 18px;
+        min-height: 50px;
+    }
+
+    .faq-question span {
+        font-size: 15px;
+        line-height: 1.45;
+        padding-right: 12px;
+    }
+
+    .faq-answer p {
+        padding: 0 18px 16px;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .paket-cta {
+        padding-top: 68px;
+        padding-bottom: 68px;
+    }
+
+    .paket-cta__card {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 22px 20px;
+        gap: 16px;
+    }
+
+    .paket-cta__content h2 {
+        font-size: 30px;
+        line-height: 1.12;
+    }
+
+    .paket-cta__content p {
+        font-size: 15px;
+        line-height: 1.75;
+        max-width: 100%;
+    }
+
+    .paket-cta__action {
+        width: 100%;
+    }
+
+    .paket-cta__action .btn {
+        width: 100%;
+        min-height: 50px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .paket-tour-page .container {
+        padding: 0 18px;
+    }
+
+    .paket-hero h1 {
+        font-size: 34px;
+    }
+
+    .tour-detail-card__copy h2,
+    .custom-trip__copy h2,
+    .paket-cta__content h2 {
+        font-size: 28px;
+    }
+
+    .tour-card__image {
+        min-height: 184px;
+    }
+
+    .tour-card__body,
+    .tour-detail-card,
+    .trip-notes__card,
+    .paket-cta__card {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .custom-trip__pills {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+    }
+
+    .custom-trip__pills span {
+        text-align: center;
+    }
+
+    .faq-question span {
+        font-size: 14px;
+    }
+}
