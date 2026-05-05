@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\File;
+use App\Models\AboutSection;
 
 class HomeController extends Controller
 {
@@ -21,20 +22,27 @@ class HomeController extends Controller
             shuffle($images);
         }
 
-        // Get featured image (first one from shuffled array)
-        $featuredImage = !empty($images) ? $images[0] : null;
-
-        // Get 4 package images (different from featured)
-        $packageImages = array_slice($images, 1, 4);
-
-        // Get 6 tour images for tour cards
-        $tourImages = array_slice($images, 5, 6);
+        // Get About section data from database
+        $aboutSection = AboutSection::first() ?? new AboutSection([
+            'title' => 'Tentang Ibiza Trans',
+            'content' => [
+                'paragraphs' => [
+                    'Ibiza Trans adalah penyedia layanan transportasi dan tour profesional berbasis di Banyuwangi. Ibiza Trans menghadirkan solusi perjalanan yang nyaman, aman, dan personal untuk wisatawan, tamu hotel, villa, serta partner hospitality.',
+                ],
+                'stats' => [
+                    ['label' => 'Private Trip', 'description' => 'Flexible'],
+                    ['label' => 'Professional Driver', 'description' => 'Trained & Friendly'],
+                    ['label' => 'Clean Fleet', 'description' => 'Well Maintained'],
+                    ['label' => 'Flexible Request', 'description' => 'Custom Itinerary'],
+                ]
+            ],
+            'featured_image_path' => null,
+        ]);
 
         return view('pages.home', [
             'galleryImages' => $images,
-            'featuredImage' => $featuredImage,
-            'packageImages' => $packageImages,
-            'tourImages' => $tourImages
+            'aboutSection' => $aboutSection,
+            'aboutFeaturedImage' => $aboutSection->getFeaturedImagePath(),
         ]);
     }
 }

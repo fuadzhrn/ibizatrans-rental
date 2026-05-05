@@ -1,0 +1,68 @@
+:root{
+  --luxury-gold: #D99A00;
+  --soft-gold: #F4C430;
+  --brand-black: #0B0B0B;
+  --brand-charcoal: #151515;
+}
+
+/* Sidebar brand */
+.brand-link .brand-text{
+  color: var(--luxury-gold) !important;
+  font-weight: 700;
+}
+
+/* Active nav link */
+.nav-sidebar .nav-link.active{
+  background: rgba(217,154,0,0.12) !important;
+  color: var(--soft-gold) !important;
+  border-left: 3px solid var(--luxury-gold);
+}
+
+/* Gold buttons */
+.btn-gold{
+  background: var(--luxury-gold) !important;
+  color: var(--brand-black) !important;
+  border: none !important;
+}
+.btn-gold:hover{
+  background: var(--soft-gold) !important;
+}
+
+/* Borders and accents */
+.border-gold{
+  border: 1px solid rgba(217,154,0,0.25) !important;
+}
+
+.text-gold{ color: var(--luxury-gold) !important; }
+
+/* Card tweaks for dark luxury look */
+.card{
+  background: linear-gradient(180deg, rgba(11,11,11,0.85), rgba(21,21,21,0.85)) !important;
+  color: #EEE !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(255,255,255,0.03) !important;
+}
+
+/* Small-box tweaks */
+.small-box.bg-dark{ background: linear-gradient(180deg,#0b0b0b,#1a1a1a) !important; }
+.small-box .icon{ color: rgba(217,154,0,0.9) !important; }
+
+/* Consistent card sizing: keep small-box cards same height and push footer to bottom */
+.small-box{
+  display: flex !important;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 160px; /* adjust if you want taller cards */
+  padding: 20px !important;
+  position: relative;
+}
+.small-box .inner{ flex: 1 1 auto; }
+.small-box .small-box-footer{ margin-top: auto; display: inline-block; }
+.small-box .icon{ position: absolute; top: 14px; right: 14px; font-size: 32px; opacity: .95; }
+
+/* Make outlines subtle */
+.btn-outline{ border: 1px solid rgba(217,154,0,0.18); color: var(--soft-gold); background: transparent; }
+
+@media (max-width:768px){
+  .nav-sidebar .nav-link{ font-size:14px; }
+}
