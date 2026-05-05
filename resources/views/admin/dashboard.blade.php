@@ -78,10 +78,10 @@
                     <h3 class="card-title">Quick Actions</h3>
                 </div>
                 <div class="card-body d-flex flex-column gap-2">
-                    <a href="{{ url('/dashboard/home') }}" class="btn btn-outline">Edit Home Content</a>
+                    <a href="{{ route('admin.home.about.index') }}" class="btn btn-outline">Manage About</a>
+                    <a href="{{ route('admin.home.gallery.index') }}" class="btn btn-outline">Manage Gallery</a>
+                    <a href="{{ route('admin.home.highlight-services.index') }}" class="btn btn-outline">Manage Highlight Layanan</a>
                     <a href="{{ url('/dashboard/layanan') }}" class="btn btn-outline">Edit Layanan Content</a>
-                    <a href="{{ url('/dashboard/paket-tour') }}" class="btn btn-outline">Edit Paket Tour</a>
-                    <a href="{{ url('/dashboard/contact') }}" class="btn btn-outline">Edit Contact Info</a>
                 </div>
             </div>
         </div>

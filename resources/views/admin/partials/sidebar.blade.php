@@ -17,11 +17,34 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="{{ url('/dashboard/home') }}" class="nav-link {{ request()->is('dashboard/home') ? 'active' : '' }}">
+                <li class="nav-item has-treeview {{ request()->is('dashboard/home*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is('dashboard/home*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-house"></i>
-                        <p>Home</p>
+                        <p>
+                            Home
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.home.about.index') }}" class="nav-link {{ request()->routeIs('admin.home.about.*') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>About Ibiza Trans</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.home.gallery.index') }}" class="nav-link {{ request()->routeIs('admin.home.gallery.*') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Gallery</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.home.highlight-services.index') }}" class="nav-link {{ request()->routeIs('admin.home.highlight-services.*') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Highlight Layanan</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li class="nav-item">

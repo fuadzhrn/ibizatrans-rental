@@ -3,23 +3,32 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Schema;
 use App\Models\AboutSection;
+use App\Models\HomeGallery;
+use App\Models\HomeServiceHighlight;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        // Read all images from gallery folder
-        $galleryPath = public_path('assets/images/galery');
+        // Try to get gallery images from DB if table exists, otherwise fallback to public folder
         $images = [];
-
-        if (File::exists($galleryPath)) {
-            $files = File::files($galleryPath);
-            foreach ($files as $file) {
-                $images[] = 'assets/images/galery/' . $file->getFilename();
+        if (Schema::hasTable('home_galleries')) {
+            $galleries = HomeGallery::where('is_active', true)->orderBy('sort_order')->orderByDesc('created_at')->get();
+            foreach ($galleries as $g) {
+                // store relative path that can be passed to asset() in views
+                $images[] = 'storage/' . ltrim($g->image, '/');
             }
-            // Shuffle images for random order each page load
-            shuffle($images);
+        } else {
+            $galleryPath = public_path('assets/images/galery');
+            if (File::exists($galleryPath)) {
+                $files = File::files($galleryPath);
+                foreach ($files as $file) {
+                    $images[] = 'assets/images/galery/' . $file->getFilename();
+                }
+                shuffle($images);
+            }
         }
 
         // Get About section data from database
@@ -39,10 +48,18 @@ class HomeController extends Controller
             'featured_image_path' => null,
         ]);
 
+        // Service highlights from DB if available
+        $highlights = [];
+        if (Schema::hasTable('home_service_highlights')) {
+            $highlights = HomeServiceHighlight::where('is_highlighted', true)->orderBy('sort_order')->limit(4)->get();
+        }
+
         return view('pages.home', [
             'galleryImages' => $images,
             'aboutSection' => $aboutSection,
             'aboutFeaturedImage' => $aboutSection->getFeaturedImagePath(),
+            'homeGalleries' => $images, // keep legacy variable name for compatibility
+            'homeServiceHighlights' => $highlights,
         ]);
     }
 }

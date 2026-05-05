@@ -37,7 +37,14 @@
         <div class="about-visual">
             <div class="card-visual">
                 @if($aboutFeaturedImage)
-                    <div class="card-image" style="background-image: url('{{ asset($aboutFeaturedImage) }}'); background-size: cover; background-position: center; height: 340px; border-radius: 12px; box-shadow: 0 10px 30px rgba(11,11,11,0.6);"></div>
+                    @php
+                        try {
+                            $imgUrl = \Illuminate\Support\Facades\Storage::url($aboutFeaturedImage);
+                        } catch (\Exception $e) {
+                            $imgUrl = asset($aboutFeaturedImage);
+                        }
+                    @endphp
+                    <div class="card-image" style="background-image: url('{{ $imgUrl }}'); background-size: cover; background-position: center; height: 340px; border-radius: 12px; box-shadow: 0 10px 30px rgba(11,11,11,0.6);"></div>
                 @else
                     <div class="card-image" style="background: linear-gradient(135deg, rgba(217,154,0,0.12), rgba(244,196,48,0.06)); height: 340px; border-radius: 12px; box-shadow: 0 10px 30px rgba(11,11,11,0.6);"></div>
                 @endif

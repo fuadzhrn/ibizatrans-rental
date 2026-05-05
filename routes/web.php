@@ -40,4 +40,17 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     });
 });
 
+// Map existing AboutSectionController to admin.home.about routes (dashboard/home)
+Route::middleware('auth')->prefix('dashboard/home')->name('admin.home.')->group(function () {
+    Route::get('/about', [App\Http\Controllers\Admin\AboutSectionController::class, 'edit'])->name('about.index');
+    Route::get('/about/edit', [App\Http\Controllers\Admin\AboutSectionController::class, 'edit'])->name('about.edit');
+    Route::post('/about/update', [App\Http\Controllers\Admin\AboutSectionController::class, 'update'])->name('about.update');
+    // Home Gallery resource
+    Route::resource('/gallery', App\Http\Controllers\Admin\Home\GalleryController::class)->names('gallery');
+    Route::patch('/gallery/{gallery}/toggle-status', [App\Http\Controllers\Admin\Home\GalleryController::class, 'toggleStatus'])->name('gallery.toggle-status');
+    // Highlight services
+    Route::get('/highlight-services', [App\Http\Controllers\Admin\Home\HighlightServiceController::class, 'index'])->name('highlight-services.index');
+    Route::put('/highlight-services', [App\Http\Controllers\Admin\Home\HighlightServiceController::class, 'update'])->name('highlight-services.update');
+});
+
 

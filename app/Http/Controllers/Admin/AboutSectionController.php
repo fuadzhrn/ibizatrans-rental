@@ -15,7 +15,7 @@ class AboutSectionController extends Controller
     public function edit()
     {
         $aboutSection = AboutSection::first() ?? new AboutSection();
-        return view('admin.about.edit', ['aboutSection' => $aboutSection]);
+        return view('admin.home.about.edit', ['aboutSection' => $aboutSection]);
     }
 
     /**
@@ -92,6 +92,6 @@ class AboutSectionController extends Controller
 
         $aboutSection->save();
 
-        return redirect()->route('admin.about.edit')->with('success', 'About section updated successfully!');
+        return redirect()->route('admin.home.about.edit')->with('success', 'About section updated successfully!');
     }
 }
