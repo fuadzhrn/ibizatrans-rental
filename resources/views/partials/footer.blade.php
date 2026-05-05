@@ -22,6 +22,15 @@
             <p>Address: Jalen I, Setail, Kec. Genteng, Kabupaten Banyuwangi, Jawa Timur 68465</p>
             <p>Instagram: <a href="https://instagram.com/ibizatrans" target="_blank">@ibizatrans</a></p>
             <p>TikTok: <a href="https://www.tiktok.com/@ibizatrans" target="_blank">@ibizatrans</a></p>
+
+            <div class="footer-social">
+                <h4>Social Media</h4>
+                <ul>
+                    <li><a href="https://instagram.com/ibizatrans" target="_blank" rel="noopener"><i class="ri-instagram-line" aria-hidden="true"></i> Instagram</a></li>
+                    <li><a href="https://www.tiktok.com/@ibizatrans" target="_blank" rel="noopener"><i class="ri-tiktok-line" aria-hidden="true"></i> TikTok</a></li>
+                    <li><a href="https://wa.me/6285703399966" target="_blank" rel="noopener"><i class="ri-whatsapp-line" aria-hidden="true"></i> WhatsApp</a></li>
+                </ul>
+            </div>
         </div>
 
         <div class="footer-cta">
