@@ -5,7 +5,7 @@
 
         <div class="featured-tour__grid">
             <article class="tour-card">
-                <div class="tour-card__image" data-image="escapada"><span>Escapada</span></div>
+                <div class="tour-card__image" data-image="escapada" @if(!empty($tourImages[0])) style="background-image: url('{{ asset($tourImages[0]) }}'); background-size: cover; background-position: center;" @endif><span>Escapada</span></div>
                 <div class="tour-card__body">
                     <div class="tour-badge">Escapada Trip</div>
                     <h3>Kawah Ijen + Taman Nasional Baluran</h3>
@@ -16,7 +16,7 @@
             </article>
 
             <article class="tour-card">
-                <div class="tour-card__image" data-image="esencia"><span>Esencia</span></div>
+                <div class="tour-card__image" data-image="esencia" @if(!empty($tourImages[1])) style="background-image: url('{{ asset($tourImages[1]) }}'); background-size: cover; background-position: center;" @endif><span>Esencia</span></div>
                 <div class="tour-card__body">
                     <div class="tour-badge">Esencia Trip</div>
                     <h3>Menjangan Island + Tabuhan Island</h3>
@@ -27,7 +27,7 @@
             </article>
 
             <article class="tour-card">
-                <div class="tour-card__image" data-image="aventura"><span>Aventura</span></div>
+                <div class="tour-card__image" data-image="aventura" @if(!empty($tourImages[2])) style="background-image: url('{{ asset($tourImages[2]) }}'); background-size: cover; background-position: center;" @endif><span>Aventura</span></div>
                 <div class="tour-card__body">
                     <div class="tour-badge">Aventura Trip</div>
                     <h3>Djawatan, Green Island, Goa Bedil, Wedi Ireng, Red Island</h3>
@@ -38,7 +38,7 @@
             </article>
 
             <article class="tour-card">
-                <div class="tour-card__image" data-image="travesia"><span>Travesia</span></div>
+                <div class="tour-card__image" data-image="travesia" @if(!empty($tourImages[3])) style="background-image: url('{{ asset($tourImages[3]) }}'); background-size: cover; background-position: center;" @endif><span>Travesia</span></div>
                 <div class="tour-card__body">
                     <div class="tour-badge">Travesia Trip</div>
                     <h3>Kawah Ijen</h3>
@@ -49,7 +49,7 @@
             </article>
 
             <article class="tour-card">
-                <div class="tour-card__image" data-image="baluran"><span>Baluran</span></div>
+                <div class="tour-card__image" data-image="baluran" @if(!empty($tourImages[4])) style="background-image: url('{{ asset($tourImages[4]) }}'); background-size: cover; background-position: center;" @endif><span>Baluran</span></div>
                 <div class="tour-card__body">
                     <div class="tour-badge">Explore Baluran</div>
                     <h3>Taman Nasional Baluran + Ratu Osing</h3>
@@ -60,7 +60,7 @@
             </article>
 
             <article class="tour-card">
-                <div class="tour-card__image" data-image="banyuwangi-selatan"><span>South Trip</span></div>
+                <div class="tour-card__image" data-image="banyuwangi-selatan" @if(!empty($tourImages[5])) style="background-image: url('{{ asset($tourImages[5]) }}'); background-size: cover; background-position: center;" @endif><span>South Trip</span></div>
                 <div class="tour-card__body">
                     <div class="tour-badge">Explore Banyuwangi Selatan</div>
                     <h3>Djawatan, Green Island, Goa Bedil, Wedi Ireng, Pulau Merah</h3>

@@ -20,7 +20,11 @@
 
         <div class="about-visual">
             <div class="card-visual">
-                <div class="card-image" style="background: linear-gradient(135deg, rgba(217,154,0,0.12), rgba(244,196,48,0.06)); height:340px; border-radius:12px; box-shadow: 0 10px 30px rgba(11,11,11,0.6);"></div>
+                @if($featuredImage)
+                    <div class="card-image" style="background-image: url('{{ asset($featuredImage) }}'); background-size: cover; background-position: center; height: 340px; border-radius: 12px; box-shadow: 0 10px 30px rgba(11,11,11,0.6);"></div>
+                @else
+                    <div class="card-image" style="background: linear-gradient(135deg, rgba(217,154,0,0.12), rgba(244,196,48,0.06)); height: 340px; border-radius: 12px; box-shadow: 0 10px 30px rgba(11,11,11,0.6);"></div>
+                @endif
             </div>
         </div>
     </div>

@@ -19,7 +19,7 @@
             <h4>Contact</h4>
             <p>WhatsApp / Call: <a href="https://wa.me/6285703399966">+62 857-0339-9966</a></p>
             <p>Booking Trip: <a href="https://wa.me/6289515324763">+62 895-1532-4763</a></p>
-            <p>Address: Jl Setail I No. 77, Genteng Kulon, Banyuwangi</p>
+            <p>Address: Jalen I, Setail, Kec. Genteng, Kabupaten Banyuwangi, Jawa Timur 68465</p>
             <p>Instagram: <a href="https://instagram.com/ibizatrans" target="_blank">@ibizatrans</a></p>
             <p>TikTok: <a href="https://www.tiktok.com/@ibizatrans" target="_blank">@ibizatrans</a></p>
         </div>

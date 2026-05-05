@@ -20,7 +20,7 @@
                 </div>
                 <a class="btn btn-primary" href="https://wa.me/6289515324763?text=Halo%20Ibiza%20Trans%2C%20saya%20ingin%20booking%20Escapada%20Trip." target="_blank">Booking Escapada Trip</a>
             </div>
-            <div class="tour-detail-card__aside"><div class="tour-detail-art"></div></div>
+            <div class="tour-detail-card__aside"><div class="tour-detail-art" @if(!empty($tourImages[0])) style="background-image: url('{{ asset($tourImages[0]) }}'); background-size: cover; background-position: center;" @endif></div></div>
         </article>
 
         <article id="esencia-trip" class="tour-detail-card tour-detail-card--alt">
@@ -35,7 +35,7 @@
                 </div>
                 <a class="btn btn-primary" href="https://wa.me/6289515324763?text=Halo%20Ibiza%20Trans%2C%20saya%20ingin%20booking%20Esencia%20Trip." target="_blank">Booking Esencia Trip</a>
             </div>
-            <div class="tour-detail-card__aside"><div class="tour-detail-art"></div></div>
+            <div class="tour-detail-card__aside"><div class="tour-detail-art" @if(!empty($tourImages[1])) style="background-image: url('{{ asset($tourImages[1]) }}'); background-size: cover; background-position: center;" @endif></div></div>
         </article>
 
         <article id="aventura-trip" class="tour-detail-card">
@@ -50,7 +50,7 @@
                 </div>
                 <a class="btn btn-primary" href="https://wa.me/6289515324763?text=Halo%20Ibiza%20Trans%2C%20saya%20ingin%20booking%20Aventura%20Trip." target="_blank">Booking Aventura Trip</a>
             </div>
-            <div class="tour-detail-card__aside"><div class="tour-detail-art"></div></div>
+            <div class="tour-detail-card__aside"><div class="tour-detail-art" @if(!empty($tourImages[2])) style="background-image: url('{{ asset($tourImages[2]) }}'); background-size: cover; background-position: center;" @endif></div></div>
         </article>
 
         <article id="travesia-trip" class="tour-detail-card tour-detail-card--alt">
@@ -65,7 +65,7 @@
                 </div>
                 <a class="btn btn-primary" href="https://wa.me/6289515324763?text=Halo%20Ibiza%20Trans%2C%20saya%20ingin%20booking%20Travesia%20Trip." target="_blank">Booking Travesia Trip</a>
             </div>
-            <div class="tour-detail-card__aside"><div class="tour-detail-art"></div></div>
+            <div class="tour-detail-card__aside"><div class="tour-detail-art" @if(!empty($tourImages[3])) style="background-image: url('{{ asset($tourImages[3]) }}'); background-size: cover; background-position: center;" @endif></div></div>
         </article>
 
         <article id="explore-baluran" class="tour-detail-card">
@@ -80,7 +80,7 @@
                 </div>
                 <a class="btn btn-primary" href="https://wa.me/6289515324763?text=Halo%20Ibiza%20Trans%2C%20saya%20ingin%20booking%20Explore%20Baluran." target="_blank">Booking Explore Baluran</a>
             </div>
-            <div class="tour-detail-card__aside"><div class="tour-detail-art"></div></div>
+            <div class="tour-detail-card__aside"><div class="tour-detail-art" @if(!empty($tourImages[4])) style="background-image: url('{{ asset($tourImages[4]) }}'); background-size: cover; background-position: center;" @endif></div></div>
         </article>
 
         <article id="explore-banyuwangi-selatan" class="tour-detail-card tour-detail-card--alt">
@@ -95,7 +95,7 @@
                 </div>
                 <a class="btn btn-primary" href="https://wa.me/6289515324763?text=Halo%20Ibiza%20Trans%2C%20saya%20ingin%20booking%20Explore%20Banyuwangi%20Selatan." target="_blank">Booking Explore Banyuwangi Selatan</a>
             </div>
-            <div class="tour-detail-card__aside"><div class="tour-detail-art"></div></div>
+            <div class="tour-detail-card__aside"><div class="tour-detail-art" @if(!empty($tourImages[5])) style="background-image: url('{{ asset($tourImages[5]) }}'); background-size: cover; background-position: center;" @endif></div></div>
         </article>
     </div>
 </section>

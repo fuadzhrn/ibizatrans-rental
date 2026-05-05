@@ -45,9 +45,30 @@
 
 /* Gallery */
 .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
-.gallery-item{height:160px;border-radius:8px;background:linear-gradient(135deg, rgba(217,154,0,0.06), rgba(11,11,11,0.05));position:relative;overflow:hidden}
+.gallery-item{height:160px;border-radius:8px;background:linear-gradient(135deg, rgba(217,154,0,0.06), rgba(11,11,11,0.05));position:relative;overflow:hidden;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease}
+.gallery-item:hover{transform:scale(1.02);box-shadow:0 12px 28px rgba(11,11,11,0.24)}
 .gallery-item .gallery-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:34px;color:rgba(244,196,48,0.72)}
+.gallery-img{width:100%;height:100%;object-fit:cover;display:block;transition:opacity .18s ease}
 .gallery-item::after{content:attr(data-label);position:absolute;left:12px;bottom:12px;color:var(--white);background:rgba(11,11,11,0.45);padding:6px 8px;border-radius:6px;font-weight:600}
+
+/* Load More */
+.load-more-container{text-align:center;margin-top:28px}
+.btn-load-more{padding:12px 24px;border:1px solid var(--gold-border);color:var(--warm-white);background:transparent;cursor:pointer;transition:all .18s ease;border-radius:8px}
+.btn-load-more:hover{background:var(--luxury-gold);color:var(--primary-black);border-color:var(--luxury-gold)}
+.gallery-count{color:var(--muted-text);font-size:13px;margin-top:8px}
+
+/* Lightbox */
+.lightbox-modal{display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;background:rgba(11,11,11,0.95);animation:fadeIn .18s ease}
+.lightbox-modal.active{display:flex;align-items:center;justify-content:center}
+.lightbox-img{max-width:90%;max-height:85vh;object-fit:contain;border-radius:8px}
+.lightbox-close{position:absolute;top:20px;right:28px;font-size:32px;color:var(--warm-white);cursor:pointer;z-index:1001;transition:color .18s ease}
+.lightbox-close:hover{color:var(--luxury-gold)}
+.lightbox-nav{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);display:flex;justify-content:space-between;padding:0 20px;z-index:1001}
+.lightbox-btn{background:transparent;border:none;color:var(--warm-white);font-size:28px;cursor:pointer;transition:color .18s ease;padding:10px}
+.lightbox-btn:hover{color:var(--luxury-gold)}
+
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.no-images{color:var(--muted-text);text-align:center;padding:28px}
 
 /* CTA */
 .cta-section{background:var(--charcoal);padding:60px 0}

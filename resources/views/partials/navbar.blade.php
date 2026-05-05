@@ -18,7 +18,7 @@
             <li><a href="{{ route('layanan') }}" class="{{ $isLayanan ? 'active' : '' }}">Layanan</a></li>
             <li><a href="{{ route('paket-tour') }}" class="{{ $isPaketTour ? 'active' : '' }}">Paket Tour</a></li>
             <li><a href="{{ route('contact') }}" class="{{ $isContact ? 'active' : '' }}">Contact</a></li>
-            <li><a class="btn btn-book" href="/book-now">Book Now</a></li>
+            <li><a class="btn btn-book" href="https://wa.me/6285703399966?text=Halo%20Ibiza%20Trans%2C%20saya%20ingin%20booking%20sekarang." target="_blank" rel="noopener">Book Now</a></li>
         </ul>
     </div>
 </nav>

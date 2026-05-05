@@ -28,7 +28,8 @@ p{color:var(--muted-text);line-height:1.6}
 .btn-primary{background:var(--luxury-gold);color:var(--primary-black)}
 .btn-secondary{background:transparent;border:1px solid rgba(255,255,255,0.08);color:var(--white)}
 .btn-outline{background:transparent;border:1px solid var(--gold-border);color:var(--white)}
-.btn-book{background:var(--luxury-gold);color:var(--primary-black);padding:10px 16px;border-radius:8px}
+.btn-book{background:var(--luxury-gold);color:var(--primary-black);padding:10px 16px;border-radius:8px;transition:all .18s ease}
+.btn-book:hover{background:var(--soft-gold);transform:translateY(-2px);box-shadow:0 6px 16px rgba(217,154,0,0.4)}
 .btn-book-outline{background:transparent;border:1px solid var(--luxury-gold);color:var(--warm-white);padding:8px 14px;border-radius:8px}
 
 /* Navbar */

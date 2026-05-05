@@ -8,7 +8,6 @@
     @include('sections.contact.hero')
     @include('sections.contact.contact-concierge')
     @include('sections.contact.maps')
-    @include('sections.contact.social-media')
     @include('sections.contact.final-cta')
 @endsection
 

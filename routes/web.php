@@ -1,9 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PaketTourController;
 
-Route::view('/', 'pages.home')->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::view('/layanan', 'pages.layanan')->name('layanan');
-Route::view('/paket-tour', 'pages.paket-tour')->name('paket-tour');
+Route::get('/paket-tour', [PaketTourController::class, 'index'])->name('paket-tour');
 Route::view('/contact', 'pages.contact')->name('contact');
 
