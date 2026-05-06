@@ -3,6 +3,58 @@
         <h2 class="section-title">Pricelist Rental Mobil</h2>
         <p class="section-sub">Pilih layanan lepas kunci atau include driver sesuai kebutuhan perjalanan Anda.</p>
 
+        @php
+            $fallbackVehiclePrices = collect([
+                ['vehicle_name' => 'Innova Reborn', 'self_drive_per_day_price' => 650000, 'self_drive_24h_price' => 700000, 'driver_price' => 950000, 'driver_note' => 'City tour maksimal 12 jam'],
+                ['vehicle_name' => 'Innova Zenix', 'self_drive_per_day_price' => 800000, 'self_drive_24h_price' => 850000, 'driver_price' => null, 'driver_note' => 'City tour maksimal 12 jam'],
+                ['vehicle_name' => 'Terios', 'self_drive_per_day_price' => 375000, 'self_drive_24h_price' => 400000, 'driver_price' => 850000, 'driver_note' => 'City tour maksimal 12 jam'],
+                ['vehicle_name' => 'All New Avanza/Xenia Type E', 'self_drive_per_day_price' => 350000, 'self_drive_24h_price' => 375000, 'driver_price' => null, 'driver_note' => 'City tour maksimal 12 jam'],
+                ['vehicle_name' => 'All New Avanza/Xenia Type G', 'self_drive_per_day_price' => 375000, 'self_drive_24h_price' => 400000, 'driver_price' => null, 'driver_note' => 'City tour maksimal 12 jam'],
+                ['vehicle_name' => 'All New Avanza/Xenia', 'self_drive_per_day_price' => null, 'self_drive_24h_price' => null, 'driver_price' => 750000, 'driver_note' => 'City tour maksimal 12 jam'],
+                ['vehicle_name' => 'All New Agya/Ayla', 'self_drive_per_day_price' => 325000, 'self_drive_24h_price' => 350000, 'driver_price' => null, 'driver_note' => 'City tour maksimal 12 jam'],
+                ['vehicle_name' => 'Ayla/Brio', 'self_drive_per_day_price' => null, 'self_drive_24h_price' => null, 'driver_price' => 650000, 'driver_note' => 'City tour maksimal 12 jam'],
+                ['vehicle_name' => 'Brio', 'self_drive_per_day_price' => 325000, 'self_drive_24h_price' => 350000, 'driver_price' => null, 'driver_note' => 'City tour maksimal 12 jam'],
+                ['vehicle_name' => 'Hiace Commuter', 'self_drive_per_day_price' => null, 'self_drive_24h_price' => null, 'driver_price' => 1400000, 'driver_note' => 'City tour maksimal 12 jam'],
+            ]);
+
+            $prices = (isset($vehiclePrices) && $vehiclePrices->count() > 0) ? $vehiclePrices : $fallbackVehiclePrices;
+
+            $formatIbizaPrice = function ($price) {
+                if (is_null($price)) {
+                    return '-';
+                }
+
+                return number_format($price / 1000, 0, ',', '.') . 'K';
+            };
+
+            $nameResolver = function ($item) {
+                if (is_array($item)) {
+                    return $item['vehicle_name'] ?? '-';
+                }
+
+                return $item->vehicle?->name ?? $item->vehicle_name ?? '-';
+            };
+
+            $selfDriveRows = $prices->filter(function ($item) {
+                $perDay = is_array($item) ? ($item['self_drive_per_day_price'] ?? null) : $item->self_drive_per_day_price;
+                $h24 = is_array($item) ? ($item['self_drive_24h_price'] ?? null) : $item->self_drive_24h_price;
+                return !is_null($perDay) || !is_null($h24);
+            });
+
+            $driverRows = $prices->filter(function ($item) {
+                $driver = is_array($item) ? ($item['driver_price'] ?? null) : $item->driver_price;
+                return !is_null($driver);
+            });
+
+            $driverNote = 'City tour maksimal 12 jam';
+            if ($driverRows->count() > 0) {
+                $firstDriver = $driverRows->first();
+                $driverNote = is_array($firstDriver)
+                    ? ($firstDriver['driver_note'] ?? $driverNote)
+                    : ($firstDriver->driver_note ?? $driverNote);
+            }
+        @endphp
+
         <div class="pricelist-grid">
             <article class="pricing-card">
                 <div class="pricing-card__head">
@@ -17,13 +69,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>Innova Reborn</td><td>650K</td><td>700K</td></tr>
-                        <tr><td>Innova Zenix</td><td>800K</td><td>850K</td></tr>
-                        <tr><td>Terios</td><td>375K</td><td>400K</td></tr>
-                        <tr><td>All New Avanza/Xenia Type E</td><td>350K</td><td>375K</td></tr>
-                        <tr><td>All New Avanza/Xenia Type G</td><td>375K</td><td>400K</td></tr>
-                        <tr><td>All New Agya/Ayla</td><td>325K</td><td>350K</td></tr>
-                        <tr><td>Brio</td><td>325K</td><td>350K</td></tr>
+                        @forelse($selfDriveRows as $row)
+                            @php
+                                $perDay = is_array($row) ? ($row['self_drive_per_day_price'] ?? null) : $row->self_drive_per_day_price;
+                                $h24 = is_array($row) ? ($row['self_drive_24h_price'] ?? null) : $row->self_drive_24h_price;
+                            @endphp
+                            <tr>
+                                <td>{{ $nameResolver($row) }}</td>
+                                <td>{{ $formatIbizaPrice($perDay) }}</td>
+                                <td>{{ $formatIbizaPrice($h24) }}</td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="3">Data harga lepas kunci belum tersedia.</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </article>
@@ -31,7 +91,7 @@
             <article class="pricing-card">
                 <div class="pricing-card__head">
                     <span class="pricing-badge"><i class="ri-user-star-line"></i> Include Driver</span>
-                    <p class="pricing-note-top">Untuk city tour maksimal 12 jam.</p>
+                    <p class="pricing-note-top">Untuk {{ strtolower($driverNote) }}.</p>
                 </div>
                 <table class="pricing-table pricing-table--driver">
                     <thead>
@@ -41,11 +101,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>Innova Reborn</td><td>950K</td></tr>
-                        <tr><td>Terios</td><td>850K</td></tr>
-                        <tr><td>All New Avanza/Xenia</td><td>750K</td></tr>
-                        <tr><td>Ayla/Brio</td><td>650K</td></tr>
-                        <tr><td>Hiace Commuter</td><td>1.400K</td></tr>
+                        @forelse($driverRows as $row)
+                            @php
+                                $driver = is_array($row) ? ($row['driver_price'] ?? null) : $row->driver_price;
+                            @endphp
+                            <tr>
+                                <td>{{ $nameResolver($row) }}</td>
+                                <td>{{ $formatIbizaPrice($driver) }}</td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="2">Data harga include driver belum tersedia.</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </article>

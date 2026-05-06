@@ -81,7 +81,9 @@
                     <a href="{{ route('admin.home.about.index') }}" class="btn btn-outline">Manage About</a>
                     <a href="{{ route('admin.home.gallery.index') }}" class="btn btn-outline">Manage Gallery</a>
                     <a href="{{ route('admin.home.highlight-services.index') }}" class="btn btn-outline">Manage Highlight Layanan</a>
-                    <a href="{{ url('/dashboard/layanan') }}" class="btn btn-outline">Edit Layanan Content</a>
+                    <a href="{{ route('admin.layanan.rental-mobil.index') }}" class="btn btn-outline">Manage Rental Mobil</a>
+                    <a href="{{ route('admin.layanan.rental-motor.index') }}" class="btn btn-outline">Manage Rental Motor</a>
+                    <a href="{{ route('admin.layanan.pricelist-mobil.index') }}" class="btn btn-outline">Manage Pricelist Mobil</a>
                 </div>
             </div>
         </div>

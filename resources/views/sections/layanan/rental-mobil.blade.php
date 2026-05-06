@@ -24,53 +24,65 @@
         </div>
 
         @php
-            $fleetUnits = [
-                ['name' => 'Ayla', 'type' => 'City Car', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
-                ['name' => 'Brio', 'type' => 'City Car', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
-                ['name' => 'Agya', 'type' => 'City Car', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
-                ['name' => 'Innova Reborn', 'type' => 'MPV', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
-                ['name' => 'Innova Zenix', 'type' => 'MPV', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
-                ['name' => 'All New Avanza', 'type' => 'MPV', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
-                ['name' => 'All New Xenia', 'type' => 'MPV', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
-                ['name' => 'Terios', 'type' => 'SUV', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
-                ['name' => 'Hiace Commuter', 'type' => 'Hiace', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
-                ['name' => 'Hiace Premio', 'type' => 'Hiace', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
+            $fallbackFleetUnits = [
+                ['name' => 'Ayla', 'category' => 'City Car', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
+                ['name' => 'Brio', 'category' => 'City Car', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
+                ['name' => 'Agya', 'category' => 'City Car', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
+                ['name' => 'Innova Reborn', 'category' => 'MPV', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
+                ['name' => 'Innova Zenix', 'category' => 'MPV', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
+                ['name' => 'All New Avanza', 'category' => 'MPV', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
+                ['name' => 'All New Xenia', 'category' => 'MPV', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
+                ['name' => 'Terios', 'category' => 'SUV', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
+                ['name' => 'Hiace Commuter', 'category' => 'Hiace', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
+                ['name' => 'Hiace Premio', 'category' => 'Hiace', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
             ];
 
-            $fleetPerPage = 9;
-            $fleetPage = max(1, (int) request('fleet_page', 1));
-            $fleetTotal = count($fleetUnits);
-            $fleetTotalPages = max(1, (int) ceil($fleetTotal / $fleetPerPage));
-            $fleetPage = min($fleetPage, $fleetTotalPages);
-            $fleetOffset = ($fleetPage - 1) * $fleetPerPage;
-            $visibleFleetUnits = array_slice($fleetUnits, $fleetOffset, $fleetPerPage);
+            $fleetItems = (isset($rentalCars) && $rentalCars && $rentalCars->count() > 0) ? $rentalCars : collect($fallbackFleetUnits);
+            $isFleetPaginator = isset($rentalCars) && $rentalCars instanceof \Illuminate\Contracts\Pagination\LengthAwarePaginator;
         @endphp
 
         <div class="rental-mobil__units">
             <div class="rental-mobil__grid">
-                @foreach($visibleFleetUnits as $unit)
+                @forelse($fleetItems as $unit)
+                    @php
+                        $unitName = is_array($unit) ? ($unit['name'] ?? '-') : $unit->name;
+                        $unitBadge = is_array($unit) ? ($unit['category'] ?? 'Rental Car') : ($unit->category ?? 'Rental Car');
+                        $unitImage = is_array($unit)
+                            ? asset($unit['image'] ?? 'assets/images/layanan/layanan-hero.jpg')
+                            : ($unit->image ? asset('storage/' . $unit->image) : asset('assets/images/layanan/layanan-hero.jpg'));
+                    @endphp
                     <article class="rental-fleet-card">
                         <div class="rental-fleet-card__image-wrap">
-                            <img src="{{ asset($unit['image']) }}" alt="{{ $unit['name'] }}" class="rental-fleet-card__image">
-                            <span class="rental-fleet-card__badge">{{ $unit['type'] }}</span>
+                            <img src="{{ $unitImage }}" alt="{{ $unitName }}" class="rental-fleet-card__image">
+                            <span class="rental-fleet-card__badge">{{ $unitBadge }}</span>
                         </div>
                         <div class="rental-fleet-card__body">
-                            <h4 class="rental-fleet-card__name">{{ $unit['name'] }}</h4>
+                            <h4 class="rental-fleet-card__name">{{ $unitName }}</h4>
                         </div>
                     </article>
-                @endforeach
+                @empty
+                    <article class="rental-fleet-card">
+                        <div class="rental-fleet-card__image-wrap">
+                            <img src="{{ asset('assets/images/layanan/layanan-hero.jpg') }}" alt="Rental Car" class="rental-fleet-card__image">
+                            <span class="rental-fleet-card__badge">Rental Car</span>
+                        </div>
+                        <div class="rental-fleet-card__body">
+                            <h4 class="rental-fleet-card__name">Unit segera tersedia</h4>
+                        </div>
+                    </article>
+                @endforelse
             </div>
 
-            @if($fleetTotalPages > 1)
+            @if($isFleetPaginator && $rentalCars->lastPage() > 1)
                 <div class="rental-fleet-pagination">
-                    @if($fleetPage > 1)
-                        <a href="{{ request()->fullUrlWithQuery(['fleet_page' => $fleetPage - 1]) }}#rental-mobil" class="rental-fleet-pagination__btn rental-fleet-pagination__btn--prev">Previous</a>
+                    @if(!$rentalCars->onFirstPage())
+                        <a href="{{ $rentalCars->previousPageUrl() }}#rental-mobil" class="rental-fleet-pagination__btn rental-fleet-pagination__btn--prev">Previous</a>
                     @endif
 
-                    <span class="rental-fleet-pagination__meta">{{ $fleetPage }} / {{ $fleetTotalPages }}</span>
+                    <span class="rental-fleet-pagination__meta">{{ $rentalCars->currentPage() }} / {{ $rentalCars->lastPage() }}</span>
 
-                    @if($fleetPage < $fleetTotalPages)
-                        <a href="{{ request()->fullUrlWithQuery(['fleet_page' => $fleetPage + 1]) }}#rental-mobil" class="rental-fleet-pagination__btn rental-fleet-pagination__btn--next">Next</a>
+                    @if($rentalCars->hasMorePages())
+                        <a href="{{ $rentalCars->nextPageUrl() }}#rental-mobil" class="rental-fleet-pagination__btn rental-fleet-pagination__btn--next">Next</a>
                     @endif
                 </div>
             @endif

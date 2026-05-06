@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Subtle reveal animation for service cards.
-    var revealItems = document.querySelectorAll('.layanan-card, .unit-card, .motor-card, .transfer-card, .pricing-card');
+    var revealItems = document.querySelectorAll('.layanan-card, .rental-fleet-card, .motor-fleet-card, .transfer-card, .pricing-card');
     if (!('IntersectionObserver' in window) || !revealItems.length) {
         return;
     }

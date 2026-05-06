@@ -47,11 +47,34 @@
                     </ul>
                 </li>
 
-                <li class="nav-item">
-                    <a href="{{ url('/dashboard/layanan') }}" class="nav-link {{ request()->is('dashboard/layanan') ? 'active' : '' }}">
+                <li class="nav-item has-treeview {{ request()->routeIs('admin.layanan.*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->routeIs('admin.layanan.*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-car"></i>
-                        <p>Layanan</p>
+                        <p>
+                            Layanan
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.layanan.rental-mobil.index') }}" class="nav-link {{ request()->routeIs('admin.layanan.rental-mobil.*') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p><i class="fas fa-car mr-1"></i> Rental Mobil</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.layanan.rental-motor.index') }}" class="nav-link {{ request()->routeIs('admin.layanan.rental-motor.*') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p><i class="fas fa-motorcycle mr-1"></i> Rental Motor</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.layanan.pricelist-mobil.index') }}" class="nav-link {{ request()->routeIs('admin.layanan.pricelist-mobil.*') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p><i class="fas fa-tags mr-1"></i> Pricelist Mobil</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li class="nav-item">

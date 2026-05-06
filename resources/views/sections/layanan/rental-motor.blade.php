@@ -4,52 +4,64 @@
         <p class="section-sub">Pilihan motor praktis untuk eksplorasi Banyuwangi dengan lebih fleksibel, hemat, dan nyaman.</p>
 
         @php
-            $motorUnits = [
-                ['name' => 'PCX', 'type' => 'Premium', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
-                ['name' => 'NMAX', 'type' => 'Premium', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
-                ['name' => 'Stylo', 'type' => 'Matic', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
-                ['name' => 'Vario', 'type' => 'Matic', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
-                ['name' => 'Scoopy', 'type' => 'Matic', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
-                ['name' => 'Beat', 'type' => 'Matic', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
-                ['name' => 'Lexi', 'type' => 'Matic', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
-                ['name' => 'Fazzio', 'type' => 'Matic', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
-                ['name' => 'Aerox', 'type' => 'Sporty', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
-                ['name' => 'Genio', 'type' => 'Matic', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
+            $fallbackMotorUnits = [
+                ['name' => 'PCX', 'category' => 'Premium', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
+                ['name' => 'NMAX', 'category' => 'Premium', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
+                ['name' => 'Stylo', 'category' => 'Matic', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
+                ['name' => 'Vario', 'category' => 'Matic', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
+                ['name' => 'Scoopy', 'category' => 'Matic', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
+                ['name' => 'Beat', 'category' => 'Matic', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
+                ['name' => 'Lexi', 'category' => 'Matic', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
+                ['name' => 'Fazzio', 'category' => 'Matic', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
+                ['name' => 'Aerox', 'category' => 'Sporty', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
+                ['name' => 'Genio', 'category' => 'Matic', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
             ];
 
-            $motorPerPage = 8;
-            $motorPage = max(1, (int) request('motor_page', 1));
-            $motorTotal = count($motorUnits);
-            $motorTotalPages = max(1, (int) ceil($motorTotal / $motorPerPage));
-            $motorPage = min($motorPage, $motorTotalPages);
-            $motorOffset = ($motorPage - 1) * $motorPerPage;
-            $visibleMotorUnits = array_slice($motorUnits, $motorOffset, $motorPerPage);
+            $motorItems = (isset($rentalMotors) && $rentalMotors && $rentalMotors->count() > 0) ? $rentalMotors : collect($fallbackMotorUnits);
+            $isMotorPaginator = isset($rentalMotors) && $rentalMotors instanceof \Illuminate\Contracts\Pagination\LengthAwarePaginator;
         @endphp
 
         <div class="rental-motor__grid">
-            @foreach($visibleMotorUnits as $unit)
+            @forelse($motorItems as $unit)
+                @php
+                    $unitName = is_array($unit) ? ($unit['name'] ?? '-') : $unit->name;
+                    $unitBadge = is_array($unit) ? ($unit['category'] ?? 'Rental Motor') : ($unit->category ?? 'Rental Motor');
+                    $unitImage = is_array($unit)
+                        ? asset($unit['image'] ?? 'assets/images/layanan/layanan-hero.jpg')
+                        : ($unit->image ? asset('storage/' . $unit->image) : asset('assets/images/layanan/layanan-hero.jpg'));
+                @endphp
                 <article class="motor-fleet-card">
                     <div class="motor-fleet-card__image-wrap">
-                        <img src="{{ asset($unit['image']) }}" alt="{{ $unit['name'] }}" class="motor-fleet-card__image">
-                        <span class="motor-fleet-card__badge">{{ $unit['type'] }}</span>
+                        <img src="{{ $unitImage }}" alt="{{ $unitName }}" class="motor-fleet-card__image">
+                        <span class="motor-fleet-card__badge">{{ $unitBadge }}</span>
                     </div>
                     <div class="motor-fleet-card__body">
-                        <h4 class="motor-fleet-card__name">{{ $unit['name'] }}</h4>
+                        <h4 class="motor-fleet-card__name">{{ $unitName }}</h4>
                     </div>
                 </article>
-            @endforeach
+            @empty
+                <article class="motor-fleet-card">
+                    <div class="motor-fleet-card__image-wrap">
+                        <img src="{{ asset('assets/images/layanan/layanan-hero.jpg') }}" alt="Rental Motor" class="motor-fleet-card__image">
+                        <span class="motor-fleet-card__badge">Rental Motor</span>
+                    </div>
+                    <div class="motor-fleet-card__body">
+                        <h4 class="motor-fleet-card__name">Unit segera tersedia</h4>
+                    </div>
+                </article>
+            @endforelse
         </div>
 
-        @if($motorTotalPages > 1)
+        @if($isMotorPaginator && $rentalMotors->lastPage() > 1)
             <div class="rental-motor-pagination">
-                @if($motorPage > 1)
-                    <a href="{{ request()->fullUrlWithQuery(['motor_page' => $motorPage - 1]) }}#rental-motor" class="rental-motor-pagination__btn">Previous</a>
+                @if(!$rentalMotors->onFirstPage())
+                    <a href="{{ $rentalMotors->previousPageUrl() }}#rental-motor" class="rental-motor-pagination__btn">Previous</a>
                 @endif
 
-                <span class="rental-motor-pagination__meta">{{ $motorPage }} / {{ $motorTotalPages }}</span>
+                <span class="rental-motor-pagination__meta">{{ $rentalMotors->currentPage() }} / {{ $rentalMotors->lastPage() }}</span>
 
-                @if($motorPage < $motorTotalPages)
-                    <a href="{{ request()->fullUrlWithQuery(['motor_page' => $motorPage + 1]) }}#rental-motor" class="rental-motor-pagination__btn">Next</a>
+                @if($rentalMotors->hasMorePages())
+                    <a href="{{ $rentalMotors->nextPageUrl() }}#rental-motor" class="rental-motor-pagination__btn">Next</a>
                 @endif
             </div>
         @endif

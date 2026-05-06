@@ -5,9 +5,36 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PaketTourController;
 use App\Http\Controllers\Admin\AboutSectionController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Admin\Layanan\RentalCarController;
+use App\Http\Controllers\Admin\Layanan\RentalMotorController;
+use App\Http\Controllers\Admin\Layanan\VehiclePriceController;
+use App\Models\Vehicle;
+use App\Models\VehiclePrice;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::view('/layanan', 'pages.layanan')->name('layanan');
+Route::get('/layanan', function () {
+    return view('pages.layanan', [
+        'rentalCars' => Vehicle::query()
+            ->cars()
+            ->active()
+            ->orderBy('sort_order')
+            ->orderByDesc('created_at')
+            ->paginate(9, ['*'], 'fleet_page'),
+
+        'rentalMotors' => Vehicle::query()
+            ->motors()
+            ->active()
+            ->orderBy('sort_order')
+            ->orderByDesc('created_at')
+            ->paginate(8, ['*'], 'motor_page'),
+
+        'vehiclePrices' => VehiclePrice::with('vehicle')
+            ->where('is_active', true)
+            ->orderBy('sort_order')
+            ->orderByDesc('created_at')
+            ->get(),
+    ]);
+})->name('layanan');
 Route::get('/paket-tour', [PaketTourController::class, 'index'])->name('paket-tour');
 Route::view('/contact', 'pages.contact')->name('contact');
 
@@ -51,6 +78,17 @@ Route::middleware('auth')->prefix('dashboard/home')->name('admin.home.')->group(
     // Highlight services
     Route::get('/highlight-services', [App\Http\Controllers\Admin\Home\HighlightServiceController::class, 'index'])->name('highlight-services.index');
     Route::put('/highlight-services', [App\Http\Controllers\Admin\Home\HighlightServiceController::class, 'update'])->name('highlight-services.update');
+});
+
+Route::middleware('auth')->prefix('dashboard/layanan')->name('admin.layanan.')->group(function () {
+    Route::resource('/rental-mobil', RentalCarController::class)->parameters(['rental-mobil' => 'vehicle'])->names('rental-mobil');
+    Route::patch('/rental-mobil/{vehicle}/toggle-status', [RentalCarController::class, 'toggleStatus'])->name('rental-mobil.toggle-status');
+
+    Route::resource('/rental-motor', RentalMotorController::class)->parameters(['rental-motor' => 'vehicle'])->names('rental-motor');
+    Route::patch('/rental-motor/{vehicle}/toggle-status', [RentalMotorController::class, 'toggleStatus'])->name('rental-motor.toggle-status');
+
+    Route::resource('/pricelist-mobil', VehiclePriceController::class)->parameters(['pricelist-mobil' => 'vehiclePrice'])->names('pricelist-mobil');
+    Route::patch('/pricelist-mobil/{vehiclePrice}/toggle-status', [VehiclePriceController::class, 'toggleStatus'])->name('pricelist-mobil.toggle-status');
 });
 
 
