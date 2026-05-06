@@ -127,8 +127,8 @@
 
 .rental-mobil__wrap {
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 26px;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: 28px;
 }
 
 .rental-mobil__type {
@@ -165,46 +165,98 @@
     color: var(--muted-text);
     font-size: 14px;
 }
-    .rental-mobil__units .unit-card {
-        min-height: 90px;
-        padding: 12px 10px;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 8px;
-        text-align: center;
-    }
-    .rental-mobil__units .unit-card i {
-        font-size: 22px;
-        margin: 0;
-    }
-    .rental-mobil__units .unit-card span {
-        display: block;
-        font-size: 13px;
-        line-height: 1.25;
-        font-weight: 600;
-        overflow-wrap: anywhere;
-    }
 
 .rental-mobil__units {
+    min-width: 0;
+}
+
+.rental-mobil__grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 12px;
 }
 
-.unit-card {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    padding: 14px;
-    border-radius: 12px;
+.rental-fleet-card {
     border: 1px solid var(--gold-border);
-    background: rgba(255, 255, 255, 0.02);
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.03);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.unit-card i {
-    color: var(--luxury-gold);
-    font-size: 18px;
+.rental-fleet-card__image-wrap {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+}
+
+.rental-fleet-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.rental-fleet-card__badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    color: var(--primary-black);
+    background: var(--soft-gold);
+    border-radius: 999px;
+    padding: 4px 8px;
+}
+
+.rental-fleet-card__body {
+    padding: 10px 12px 12px;
+}
+
+.rental-fleet-card__name {
+    margin: 0;
+    color: var(--warm-white);
+    font-size: 14px;
+    line-height: 1.35;
+}
+
+.rental-fleet-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.rental-fleet-pagination__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 36px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--gold-border);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--warm-white);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.rental-fleet-pagination__btn:hover {
+    background: var(--luxury-gold);
+    color: var(--primary-black);
+    border-color: var(--luxury-gold);
+}
+
+.rental-fleet-pagination__meta {
+    color: var(--muted-text);
+    font-size: 13px;
+    min-width: 56px;
+    text-align: center;
 }
 
 .layanan-pricelist {
@@ -291,27 +343,101 @@
 .rental-motor__grid {
     margin-top: 24px;
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 12px;
 }
 
-.motor-card {
+.motor-fleet-card {
     border: 1px solid var(--gold-border);
     border-radius: 12px;
-    background: rgba(255, 255, 255, 0.02);
-    padding: 16px;
-    text-align: center;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.03);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.motor-card i {
+.motor-fleet-card__image-wrap {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+}
+
+.motor-fleet-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     display: block;
-    color: var(--luxury-gold);
-    font-size: 22px;
-    margin-bottom: 8px;
+    transition: transform 0.3s ease;
+}
+
+.motor-fleet-card__badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    color: var(--primary-black);
+    background: var(--soft-gold);
+    border-radius: 999px;
+    padding: 4px 8px;
+}
+
+.motor-fleet-card__body {
+    padding: 10px 12px 12px;
+}
+
+.motor-fleet-card__name {
+    margin: 0;
+    color: var(--warm-white);
+    font-size: 14px;
+    line-height: 1.35;
+}
+
+.rental-motor-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.rental-motor-pagination__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 36px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--gold-border);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--warm-white);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.rental-motor-pagination__btn:hover {
+    background: var(--luxury-gold);
+    color: var(--primary-black);
+    border-color: var(--luxury-gold);
+}
+
+.rental-motor-pagination__meta {
+    color: var(--muted-text);
+    font-size: 13px;
+    min-width: 56px;
+    text-align: center;
 }
 
 .rental-motor__action {
     margin-top: 20px;
+}
+
+@media (max-width: 992px) {
+    .rental-motor__grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
 }
 
 .driver-service {
@@ -392,10 +518,18 @@
 }
 
 .transfer-card:hover,
-.unit-card:hover,
-.motor-card:hover {
+.rental-fleet-card:hover,
+.motor-fleet-card:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+}
+
+.rental-fleet-card:hover .rental-fleet-card__image {
+    transform: scale(1.05);
+}
+
+.motor-fleet-card:hover .motor-fleet-card__image {
+    transform: scale(1.05);
 }
 
 .transfer-card i {
@@ -533,16 +667,19 @@
         order: 1;
     }
 
-    .rental-mobil__units,
-    .rental-motor__grid {
+    .rental-mobil__units {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 10px;
     }
 
+    .rental-mobil__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     .rental-mobil__type,
-    .unit-card,
-    .motor-card,
+    .motor-fleet-card,
     .transfer-card,
+    .rental-fleet-card,
     .driver-service__card,
     .pricing-card,
     .layanan-cta__card {
@@ -559,16 +696,12 @@
         line-height: 1.12;
     }
 
-    .section-sub,
-    .rental-mobil__type p,
-    .rental-mobil__note,
-    .driver-service__copy,
-    .layanan-cta__content p {
-        font-size: 15px;
-        line-height: 1.75;
+    .rental-mobil__benefits {
+        gap: 10px;
     }
 
-    .rental-mobil__benefits {
+    .rental-motor__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 10px;
     }
 
@@ -576,19 +709,33 @@
         margin-top: 12px;
     }
 
-    .unit-card,
-    .motor-card,
     .transfer-card,
+    .rental-fleet-card,
     .driver-item {
         padding: 14px 14px;
     }
 
-    .unit-card span,
-    .motor-card span,
+    .motor-fleet-card__name,
     .driver-item span,
     .transfer-card p {
         font-size: 14px;
         line-height: 1.45;
+    }
+
+    .rental-motor-pagination {
+        margin-top: 12px;
+    }
+
+    .rental-fleet-card__body {
+        padding: 10px 10px 12px;
+    }
+
+    .rental-fleet-card__name {
+        font-size: 13px;
+    }
+
+    .rental-fleet-pagination {
+        margin-top: 12px;
     }
 
     .layanan-pricelist .pricing-card {
@@ -777,14 +924,34 @@
     }
 
     .layanan-overview__grid,
-    .rental-mobil__units,
+    .rental-mobil__grid,
     .rental-motor__grid,
     .driver-service__card {
         grid-template-columns: 1fr;
     }
 
-    .rental-mobil__units .unit-card span {
-        font-size: 13px;
+    .rental-fleet-card__name {
+        font-size: 14px;
+    }
+
+    .rental-fleet-pagination {
+        gap: 8px;
+    }
+
+    .rental-fleet-pagination__btn {
+        min-height: 34px;
+        padding: 7px 12px;
+        font-size: 12px;
+    }
+
+    .rental-motor-pagination {
+        gap: 8px;
+    }
+
+    .rental-motor-pagination__btn {
+        min-height: 34px;
+        padding: 7px 12px;
+        font-size: 12px;
     }
 
     .pricing-table tr {

@@ -23,17 +23,57 @@
             <p class="rental-mobil__note">Pilihan unit dapat menyesuaikan ketersediaan. Hubungi admin untuk cek jadwal dan unit terbaru.</p>
         </div>
 
+        @php
+            $fleetUnits = [
+                ['name' => 'Ayla', 'type' => 'City Car', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
+                ['name' => 'Brio', 'type' => 'City Car', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
+                ['name' => 'Agya', 'type' => 'City Car', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
+                ['name' => 'Innova Reborn', 'type' => 'MPV', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
+                ['name' => 'Innova Zenix', 'type' => 'MPV', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
+                ['name' => 'All New Avanza', 'type' => 'MPV', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
+                ['name' => 'All New Xenia', 'type' => 'MPV', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
+                ['name' => 'Terios', 'type' => 'SUV', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
+                ['name' => 'Hiace Commuter', 'type' => 'Hiace', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
+                ['name' => 'Hiace Premio', 'type' => 'Hiace', 'image' => 'assets/images/layanan/layanan-hero.jpg'],
+            ];
+
+            $fleetPerPage = 9;
+            $fleetPage = max(1, (int) request('fleet_page', 1));
+            $fleetTotal = count($fleetUnits);
+            $fleetTotalPages = max(1, (int) ceil($fleetTotal / $fleetPerPage));
+            $fleetPage = min($fleetPage, $fleetTotalPages);
+            $fleetOffset = ($fleetPage - 1) * $fleetPerPage;
+            $visibleFleetUnits = array_slice($fleetUnits, $fleetOffset, $fleetPerPage);
+        @endphp
+
         <div class="rental-mobil__units">
-            <article class="unit-card"><i class="ri-car-line"></i><span>Ayla</span></article>
-            <article class="unit-card"><i class="ri-car-line"></i><span>Brio</span></article>
-            <article class="unit-card"><i class="ri-car-line"></i><span>Agya</span></article>
-            <article class="unit-card"><i class="ri-car-line"></i><span>Innova Reborn</span></article>
-            <article class="unit-card"><i class="ri-car-line"></i><span>Innova Zenix</span></article>
-            <article class="unit-card"><i class="ri-car-line"></i><span>All New Avanza</span></article>
-            <article class="unit-card"><i class="ri-car-line"></i><span>All New Xenia</span></article>
-            <article class="unit-card"><i class="ri-car-line"></i><span>Terios</span></article>
-            <article class="unit-card"><i class="ri-bus-line"></i><span>Hiace Commuter</span></article>
-            <article class="unit-card"><i class="ri-bus-2-line"></i><span>Hiace Premio</span></article>
+            <div class="rental-mobil__grid">
+                @foreach($visibleFleetUnits as $unit)
+                    <article class="rental-fleet-card">
+                        <div class="rental-fleet-card__image-wrap">
+                            <img src="{{ asset($unit['image']) }}" alt="{{ $unit['name'] }}" class="rental-fleet-card__image">
+                            <span class="rental-fleet-card__badge">{{ $unit['type'] }}</span>
+                        </div>
+                        <div class="rental-fleet-card__body">
+                            <h4 class="rental-fleet-card__name">{{ $unit['name'] }}</h4>
+                        </div>
+                    </article>
+                @endforeach
+            </div>
+
+            @if($fleetTotalPages > 1)
+                <div class="rental-fleet-pagination">
+                    @if($fleetPage > 1)
+                        <a href="{{ request()->fullUrlWithQuery(['fleet_page' => $fleetPage - 1]) }}#rental-mobil" class="rental-fleet-pagination__btn rental-fleet-pagination__btn--prev">Previous</a>
+                    @endif
+
+                    <span class="rental-fleet-pagination__meta">{{ $fleetPage }} / {{ $fleetTotalPages }}</span>
+
+                    @if($fleetPage < $fleetTotalPages)
+                        <a href="{{ request()->fullUrlWithQuery(['fleet_page' => $fleetPage + 1]) }}#rental-mobil" class="rental-fleet-pagination__btn rental-fleet-pagination__btn--next">Next</a>
+                    @endif
+                </div>
+            @endif
         </div>
     </div>
 </section>
