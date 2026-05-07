@@ -35,7 +35,25 @@ Route::get('/layanan', function () {
             ->get(),
     ]);
 })->name('layanan');
-Route::get('/paket-tour', [PaketTourController::class, 'index'])->name('paket-tour');
+Route::get('/paket-tour', function () {
+    return view('pages.paket-tour', [
+        'tourPackages' => \App\Models\TourPackage::with([
+            'destinations' => fn ($q) => $q->orderBy('sort_order'),
+            'prices' => fn ($q) => $q->orderBy('sort_order'),
+            'facilities' => fn ($q) => $q->orderBy('sort_order'),
+            'itineraries' => fn ($q) => $q->orderBy('sort_order'),
+        ])
+            ->where('is_active', true)
+            ->orderBy('sort_order')
+            ->orderByDesc('created_at')
+            ->get(),
+
+        'tourFaqs' => \App\Models\TourFaq::where('is_active', true)
+            ->orderBy('sort_order')
+            ->orderByDesc('created_at')
+            ->get(),
+    ]);
+})->name('paket-tour');
 Route::view('/contact', 'pages.contact')->name('contact');
 
 // Auth Routes
@@ -89,6 +107,31 @@ Route::middleware('auth')->prefix('dashboard/layanan')->name('admin.layanan.')->
 
     Route::resource('/pricelist-mobil', VehiclePriceController::class)->parameters(['pricelist-mobil' => 'vehiclePrice'])->names('pricelist-mobil');
     Route::patch('/pricelist-mobil/{vehiclePrice}/toggle-status', [VehiclePriceController::class, 'toggleStatus'])->name('pricelist-mobil.toggle-status');
+});
+
+// Paket Tour admin routes
+Route::middleware('auth')->prefix('dashboard/paket-tour')->name('admin.paket-tour.')->group(function () {
+    Route::resource('/packages', App\Http\Controllers\Admin\PaketTour\TourPackageController::class)->names('packages');
+    Route::patch('/packages/{tourPackage}/toggle-status', [App\Http\Controllers\Admin\PaketTour\TourPackageController::class, 'toggleStatus'])->name('packages.toggle-status');
+
+    Route::post('/packages/{tourPackage}/destinations', [App\Http\Controllers\Admin\PaketTour\TourDestinationController::class, 'store'])->name('destinations.store');
+    Route::put('/destinations/{tourDestination}', [App\Http\Controllers\Admin\PaketTour\TourDestinationController::class, 'update'])->name('destinations.update');
+    Route::delete('/destinations/{tourDestination}', [App\Http\Controllers\Admin\PaketTour\TourDestinationController::class, 'destroy'])->name('destinations.destroy');
+
+    Route::post('/packages/{tourPackage}/prices', [App\Http\Controllers\Admin\PaketTour\TourPriceController::class, 'store'])->name('prices.store');
+    Route::put('/prices/{tourPrice}', [App\Http\Controllers\Admin\PaketTour\TourPriceController::class, 'update'])->name('prices.update');
+    Route::delete('/prices/{tourPrice}', [App\Http\Controllers\Admin\PaketTour\TourPriceController::class, 'destroy'])->name('prices.destroy');
+
+    Route::post('/packages/{tourPackage}/facilities', [App\Http\Controllers\Admin\PaketTour\TourFacilityController::class, 'store'])->name('facilities.store');
+    Route::put('/facilities/{tourFacility}', [App\Http\Controllers\Admin\PaketTour\TourFacilityController::class, 'update'])->name('facilities.update');
+    Route::delete('/facilities/{tourFacility}', [App\Http\Controllers\Admin\PaketTour\TourFacilityController::class, 'destroy'])->name('facilities.destroy');
+
+    Route::post('/packages/{tourPackage}/itineraries', [App\Http\Controllers\Admin\PaketTour\TourItineraryController::class, 'store'])->name('itineraries.store');
+    Route::put('/itineraries/{tourItinerary}', [App\Http\Controllers\Admin\PaketTour\TourItineraryController::class, 'update'])->name('itineraries.update');
+    Route::delete('/itineraries/{tourItinerary}', [App\Http\Controllers\Admin\PaketTour\TourItineraryController::class, 'destroy'])->name('itineraries.destroy');
+
+    Route::resource('/faqs', App\Http\Controllers\Admin\PaketTour\TourFaqController::class)->names('faqs');
+    Route::patch('/faqs/{tourFaq}/toggle-status', [App\Http\Controllers\Admin\PaketTour\TourFaqController::class, 'toggleStatus'])->name('faqs.toggle-status');
 });
 
 

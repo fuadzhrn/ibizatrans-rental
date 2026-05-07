@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Schema;
 use App\Models\AboutSection;
 use App\Models\HomeGallery;
 use App\Models\HomeServiceHighlight;
+use App\Models\TourPackage;
 
 class HomeController extends Controller
 {
@@ -19,6 +20,10 @@ class HomeController extends Controller
             foreach ($galleries as $g) {
                 // store relative path that can be passed to asset() in views
                 $images[] = 'storage/' . ltrim($g->image, '/');
+            }
+            // Randomize order on user home gallery so it changes each load.
+            if (count($images) > 1) {
+                shuffle($images);
             }
         } else {
             $galleryPath = public_path('assets/images/galery');
@@ -54,12 +59,24 @@ class HomeController extends Controller
             $highlights = HomeServiceHighlight::where('is_highlighted', true)->orderBy('sort_order')->limit(4)->get();
         }
 
+        // Featured tour packages for home section
+        $homeTourPackages = collect();
+        if (Schema::hasTable('tour_packages')) {
+            $homeTourPackages = TourPackage::query()
+                ->where('is_active', true)
+                ->orderBy('sort_order')
+                ->orderByDesc('created_at')
+                ->limit(4)
+                ->get();
+        }
+
         return view('pages.home', [
             'galleryImages' => $images,
             'aboutSection' => $aboutSection,
             'aboutFeaturedImage' => $aboutSection->getFeaturedImagePath(),
             'homeGalleries' => $images, // keep legacy variable name for compatibility
             'homeServiceHighlights' => $highlights,
+            'homeTourPackages' => $homeTourPackages,
         ]);
     }
 }

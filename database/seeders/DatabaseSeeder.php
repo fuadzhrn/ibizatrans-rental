@@ -25,6 +25,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             VehicleSeeder::class,
             VehiclePriceSeeder::class,
+            \Database\Seeders\TourPackageSeeder::class,
+            \Database\Seeders\TourFaqSeeder::class,
         ]);
     }
 }

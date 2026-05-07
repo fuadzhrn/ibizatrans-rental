@@ -84,6 +84,8 @@
                     <a href="{{ route('admin.layanan.rental-mobil.index') }}" class="btn btn-outline">Manage Rental Mobil</a>
                     <a href="{{ route('admin.layanan.rental-motor.index') }}" class="btn btn-outline">Manage Rental Motor</a>
                     <a href="{{ route('admin.layanan.pricelist-mobil.index') }}" class="btn btn-outline">Manage Pricelist Mobil</a>
+                    <a href="{{ route('admin.paket-tour.packages.index') }}" class="btn btn-outline">Manage Tour Packages</a>
+                    <a href="{{ route('admin.paket-tour.faqs.index') }}" class="btn btn-outline">Manage FAQ Paket Tour</a>
                 </div>
             </div>
         </div>

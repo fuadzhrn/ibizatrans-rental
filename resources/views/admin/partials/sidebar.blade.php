@@ -77,11 +77,28 @@
                     </ul>
                 </li>
 
-                <li class="nav-item">
-                    <a href="{{ url('/dashboard/paket-tour') }}" class="nav-link {{ request()->is('dashboard/paket-tour') ? 'active' : '' }}">
+                <li class="nav-item has-treeview {{ request()->routeIs('admin.paket-tour.*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->routeIs('admin.paket-tour.*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-map-location-dot"></i>
-                        <p>Paket Tour</p>
+                        <p>
+                            Paket Tour
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.paket-tour.packages.index') }}" class="nav-link {{ request()->routeIs('admin.paket-tour.packages.*') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p><i class="fas fa-route mr-1"></i> Tour Packages</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.paket-tour.faqs.index') }}" class="nav-link {{ request()->routeIs('admin.paket-tour.faqs.*') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p><i class="fas fa-circle-question mr-1"></i> FAQ Paket Tour</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li class="nav-item">
